@@ -1,0 +1,33 @@
+services:
+  # ----------------------------------------
+  # Flask Web App (Docker)
+  # ----------------------------------------
+  - type: web
+    name: flask-docker-app
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: 0
+
+  # ----------------------------------------
+  # Celery Background Worker
+  # ----------------------------------------
+  - type: worker
+    name: celery-worker
+    env: python
+    plan: free
+    buildCommand: |
+      apt-get update && apt-get install -y ffmpeg
+      pip install -r requirements.txt
+      flask db migrate -m "Render migration" || true
+      flask db upgrade || true
+    startCommand: celery -A celery_worker.celery worker --loglevel=info
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: 0
