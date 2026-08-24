@@ -1,6 +1,10 @@
 import os
 from datetime import  timedelta
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -23,7 +27,7 @@ SQLALCHEMY_ENGINE_OPTIONS = {
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "naso")
                                 
-    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI_EXT")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI",)
     #SQLALCHEMY_DATABASE_URI = "postgresql://postgres:YardCore94!@localhost:5433/coop-mart"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Pagination
