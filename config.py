@@ -27,8 +27,8 @@ SQLALCHEMY_ENGINE_OPTIONS = {
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", "naso")
                                 
-    #SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI",)
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:YardCore94!@localhost:5433/coop-mart"
+    SQLALCHEMY_DATABASE_URI = "postgresql://coopmart_lmow_user:Cgt3INbDMqGKimqzJ3aCUNOz6L4CoLfm@dpg-da5f188u01pc73f10k50-a.oregon-postgres.render.com/coopmart_lmow" #os.environ.get("SQLALCHEMY_DATABASE_URI_EXT",)
+    #SQLALCHEMY_DATABASE_URI = "postgresql://postgres:YardCore94!@localhost:5433/coop-mart"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Pagination
     POSTS_PER_PAGE = 90
